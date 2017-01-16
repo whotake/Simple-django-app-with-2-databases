@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <title></title>
+</head>
+{% block content %}
+    <div class="row">
+        {% if latest_store_list %}
+            {% for staff in latest_store_list %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ staff.photo.url }}" alt="{{ staff.name }}">
+                        <div class="caption">
+                            <h3>{{ staff.name }}</h3>
+                            <p>{{ staff.description }}</p>
+                            <h4>Всего: {{ staff.price }} рублей</h4>
+                            <p><a href="{% url 'store:detail' staff.id %}" class="btn btn-primary" role="button">Подробнее</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock content %}

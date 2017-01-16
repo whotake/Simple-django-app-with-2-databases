@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Sqlite (Xerial) - 'default': {         'ENGINE': 'django.db.backends.sqlite3',         'NAME': os.path.join(BASE_DIR, 'db.users'),     }" uuid="1774ad42-e2e8-4457-9495-2e31ccd2c9fb">
+      <secret-storage>master_key</secret-storage>
+      <auth-required>false</auth-required>
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>

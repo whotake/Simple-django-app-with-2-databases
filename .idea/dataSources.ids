@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="Sqlite (Xerial) - &apos;default&apos;: {         &apos;ENGINE&apos;: &apos;django.db.backends.sqlite3&apos;,         &apos;NAME&apos;: os.path.join(BASE_DIR, &apos;db.users&apos;),     }" uuid="1774ad42-e2e8-4457-9495-2e31ccd2c9fb">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
+</component>

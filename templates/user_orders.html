@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <title></title>
+</head>
+{% block content %}
+    <h1 class="text-center">Мои заказы</h1>
+    {% if orders %}
+        {% for item in orders %}
+            {% if item.status %}
+                <div class="alert alert-success" role="alert">
+                    <a href="{% url 'store:detail' item.item.id %}">
+                        <h3 class="text-center media-heading">
+                            {{ item.item.name }}
+                        </h3>
+                    </a>
+                    <h4 class="media-heading">Статус: обработан</h4>
+                </div>
+            {% else %}
+                <div class="alert alert-warning" role="alert">
+                    <a href="{% url 'store:detail' item.item.id %}">
+                        <h3 class="text-center media-heading">
+                            {{ item.item.name }}
+                        </h3>
+                    </a>
+                    <h4 class="media-heading">Статус: обрабатывается</h4>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <h2>У вас нет заказов</h2>
+    {% endif %}
+{% endblock content %}

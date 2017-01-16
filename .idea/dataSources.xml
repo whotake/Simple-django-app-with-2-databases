@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="3828019161">
+    <data-source source="LOCAL" name="Sqlite (Xerial) - 'default': {         'ENGINE': 'django.db.backends.sqlite3',         'NAME': os.path.join(BASE_DIR, 'db.users'),     }" uuid="1774ad42-e2e8-4457-9495-2e31ccd2c9fb">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:$PROJECT_DIR$/../ris\'default': {         'ENGINE': 'django.db.backends.sqlite3',         'NAME': os.path.join(BASE_DIR, 'db.users'),     }</jdbc-url>
+    </data-source>
+  </component>
+</project>

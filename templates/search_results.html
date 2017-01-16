@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+<head>
+    <title></title>
+</head>
+{% block content %}
+    {% if error_message %}
+        <h2>{{ error_message }}</h2>
+    {% endif %}
+    {% if result %}
+        {% for staff in result %}
+            <div class="col-md-4">
+                <a href="{% url 'store:detail' staff.id %}">
+                    <h2 class="text-center">
+                        {{ staff.name }}
+                    </h2>
+                </a>
+                <ul>
+                    <li>{{ staff.price }}</li>
+                    <li>{{ staff.description }}</li>
+                    <img src="{{ staff.photo.url }}" class="img-responsive">
+                </ul>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}
