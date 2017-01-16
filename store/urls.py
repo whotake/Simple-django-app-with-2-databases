@@ -14,4 +14,8 @@ urlpatterns = [
     url(r'^(?P<item_id>[0-9]+)/buy/$', views.create_order, name='create_order'),
     url(r'^search/$', views.search, name='search'),
     url(r'^orders/$', views.user_orders, name='user_orders'),
+    url(r'^comments/$', views.user_comments, name='user_comments'),
+    url(r'^(?P<comment_id>[0-9]+)/delete/$', views.delete_comment, name='delete_comment'),
+    url(r'^(?P<comment_id>[0-9]+)/edit_page/$', views.edit_comment_page, name='edit_comment_page'),
+    url(r'^(?P<comment_id>[0-9]+)/edit/$', views.edit_comment, name='edit_comment'),
 ]

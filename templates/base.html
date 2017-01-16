@@ -45,6 +45,7 @@
                            aria-expanded="false">{{ user.username }} <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             <li><a href="{% url 'store:user_orders' %}">Мои заказы</a></li>
+                            <li><a href="{% url 'store:user_comments' %}">Мои комментарии</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="{% url 'store:logout' %}">Выход</a></li>
                         </ul>

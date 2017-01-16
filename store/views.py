@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 
 from .models import Staff, Category, Comment, Order
 
-from .forms import AddComment, SignUpForm, UserLogin
+from .forms import AddComment, SignUpForm, UserLogin, EditComment
 
 
 class IndexView(generic.ListView):
@@ -62,7 +62,7 @@ def add_comment(request, item_id):
         form = AddComment(request.POST)
         if form.is_valid():
             comment = Comment()
-            comment.user_id = request.user
+            comment.user_id = request.user.id
             comment.time_added = timezone.now()
             comment.staff = item
             comment.text = form.cleaned_data.get('text')
@@ -70,6 +70,28 @@ def add_comment(request, item_id):
             return HttpResponseRedirect(reverse('store:detail', args=(item_id,)))
     else:
         return HttpResponseRedirect(reverse('store:detail', args=(item_id,)))
+
+
+@login_required
+def edit_comment(request, comment_id):
+    get_object_or_404(Comment, pk=comment_id)
+    if request.method == "POST":
+        form = EditComment(request.POST)
+        if form.is_valid():
+            comment = Comment.objects.get(pk=comment_id)
+            comment.text = form.cleaned_data.get('text')
+            comment.save()
+            return HttpResponseRedirect(reverse('store:user_comments'))
+    else:
+        return HttpResponseRedirect(reverse('store:user_comments'))
+
+
+@login_required
+def edit_comment_page(request, comment_id):
+    comment_form = EditComment
+    comment = Comment.objects.filter(pk=comment_id)
+    return render(request, 'edit_comment.html', {'comment': comment,
+                                                 'comment_form': comment_form})
 
 
 def signup(request):
@@ -127,12 +149,24 @@ def create_order(request, item_id):
     if request.method == 'POST':
         item = get_object_or_404(Staff, pk=item_id)
         order = Order()
-        order.user_id = request.user
+        order.user_id = request.user.id
         order.item = item
         order.save()
         return HttpResponseRedirect(reverse('store:detail', args=(item_id,)))
     else:
         return HttpResponseRedirect(reverse('store:index', ))
+
+
+@login_required
+def user_comments(request):
+    comments = Comment.objects.filter(user_id=request.user.id)
+    return render(request, 'user_comments.html', {'comments': comments,})
+
+
+@login_required
+def delete_comment(request, comment_id):
+    Comment.objects.filter(pk=comment_id).delete()
+    return HttpResponseRedirect(reverse('store:user_comments', ))
 
 
 def search(request):
@@ -151,4 +185,5 @@ def search(request):
 
 def user_orders(request):
     orders = Order.objects.filter(user_id=request.user.id)
-    return render(request, 'user_orders.html', {'orders': orders,})
+    return render(request, 'user_orders.html', {'orders': orders,
+                                                })

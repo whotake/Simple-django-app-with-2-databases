@@ -4,30 +4,21 @@
     <title></title>
 </head>
 {% block content %}
-    <h1 class="text-center">Мои заказы</h1>
-    {% if orders %}
-        {% for item in orders %}
-            {% if item.status %}
-                <div class="alert alert-success" role="alert">
-                    <a href="{% url 'store:detail' item.item.id %}">
-                        <h3 class="text-center media-heading">
-                            {{ item.item.name }}
-                        </h3>
-                    </a>
-                    <h4 class="media-heading">Статус: обработан</h4>
+    <h1 class="text-center">Мои комментарии</h1>
+    {% if comments %}
+        {% for comment in comments %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Товар: <b>{{ comment.staff.name }}</b></h3>
+                    <h3 class="panel-title">{{ comment.time_added }}</h3>
+                    <h4 class="panel-title"><a href="{% url 'store:edit_comment_page'  comment.id%}">Изменить</a> || <a href="{% url 'store:delete_comment'  comment.id%}">Удалить</a></h4>
                 </div>
-            {% else %}
-                <div class="alert alert-warning" role="alert">
-                    <a href="{% url 'store:detail' item.item.id %}">
-                        <h3 class="text-center media-heading">
-                            {{ item.item.name }}
-                        </h3>
-                    </a>
-                    <h4 class="media-heading">Статус: обрабатывается</h4>
+                <div class="panel-body">
+                    <p>{{ comment.text }}</p>
                 </div>
-            {% endif %}
+            </div>
         {% endfor %}
     {% else %}
-        <h2>У вас нет заказов</h2>
+        <h2>У вас нет комментариев</h2>
     {% endif %}
 {% endblock content %}

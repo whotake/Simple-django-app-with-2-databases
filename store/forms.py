@@ -17,6 +17,19 @@ class AddComment(forms.ModelForm):
         fields = ['text']
 
 
+class EditComment(forms.ModelForm):
+    text = forms.CharField(
+        label='Текст комментария',
+        max_length=800,
+        widget=forms.Textarea(attrs={'class': 'form-control',
+                                     'rows': '3'})
+    )
+
+    class Meta:
+        model = Comment
+        fields = ['text']
+
+
 class UserLogin(forms.Form):
     login = forms.CharField(
         widget=forms.TextInput(attrs={'class': 'form-control'}),
